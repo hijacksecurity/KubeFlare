@@ -40,4 +40,4 @@ docker-compose.override.yml
 .env.*
 coverage.xml
 *,cover
-*.egg-info/
+kubeflare-flask-app*.tar
