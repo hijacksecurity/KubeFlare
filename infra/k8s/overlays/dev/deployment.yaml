@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflare-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubeflare-flask
+  template:
+    metadata:
+      labels:
+        app: kubeflare-flask
+    spec:
+      containers:
+        - name: kubeflare-flask
+          image: localhost:5000/kubeflare-flask-app:dev  # ✅ FIXED IMAGE
+          imagePullPolicy: IfNotPresent  # ✅ Prevents unnecessary pulling
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ENV
+              value: DEV

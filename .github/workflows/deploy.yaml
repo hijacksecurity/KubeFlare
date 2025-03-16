@@ -1,0 +1,31 @@
+name: Deploy to Kubernetes (Dev)
+
+on:
+  push:
+    branches:
+      - main  # Runs when code is pushed to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and tag Docker image
+      run: |
+        docker build -t localhost:5000/kubeflare-flask-app:dev .
+        docker push localhost:5000/kubeflare-flask-app:dev
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Apply Kubernetes manifests
+      run: |
+        kubectl apply -k infra/k8s/overlays/dev/
