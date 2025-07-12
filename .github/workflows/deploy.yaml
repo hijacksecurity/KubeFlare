@@ -5,7 +5,20 @@ on:
     branches:
       - main  # Runs when code is pushed to main
 
+permissions:
+    security-events: write
+    contents: read
+    checks: write
+    pull-requests: write
+
 jobs:
+  SAST:
+    uses: hijacksecurity/SecurityAsAService/.github/workflows/sast.yml@main
+
+  SCA:
+    uses: hijacksecurity/SecurityAsAService/.github/workflows/sca.yml@main
+    secrets: inherit
+
   build-and-deploy:
     runs-on: ubuntu-latest
 
