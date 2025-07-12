@@ -17,7 +17,7 @@ jobs:
 
   SCA:
     uses: hijacksecurity/SecurityAsAService/.github/workflows/sca.yml@main
-    secrets: inherit
+    #secrets: inherit
 
 #  build-and-deploy:
 #    runs-on: ubuntu-latest
