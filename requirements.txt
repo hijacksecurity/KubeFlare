@@ -3,7 +3,7 @@ Flask
 # VULN
 Django==2.0.1
 Flask==0.12.2
-requests==2.8.1
+requests==2.32.4
 Pillow==5.0.0
 PyYAML==3.12
 cryptography==1.5.3
