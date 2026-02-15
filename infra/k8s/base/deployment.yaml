@@ -16,9 +16,11 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: kubeflare-flask
-          image: kubeflare-flask-app:latest
+          image: kubeflare-flask-app:v1.0.0
           securityContext:
             readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
