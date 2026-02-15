@@ -12,10 +12,15 @@ spec:
       labels:
         app: kubeflare-flask
     spec:
+      securityContext:
+        runAsNonRoot: true
       containers:
         - name: kubeflare-flask
-          image: localhost:5000/kubeflare-flask-app:dev  # ✅ FIXED IMAGE
-          imagePullPolicy: IfNotPresent  # ✅ Prevents unnecessary pulling
+          image: localhost:5000/kubeflare-flask-app:dev
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
           ports:
             - containerPort: 5000
           env:

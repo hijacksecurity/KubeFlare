@@ -19,6 +19,10 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY src/ ./src/
 COPY config/ ./config/
 
+# Create a non-root user
+RUN groupadd -r appuser && useradd -r -g appuser -d /app -s /sbin/nologin appuser \
+    && chown -R appuser:appuser /app
+
 # Expose the application port
 EXPOSE 5000
 
@@ -27,4 +31,6 @@ ENV FLASK_ENV=PROD
 
 # Run the application with Gunicorn (production best practice)
 RUN pip install gunicorn
+
+USER appuser
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "src.app:main()"]
