@@ -1,11 +1,11 @@
 Flask
 
 # VULN
-Django==2.0.1
+Django==4.2.26
 Flask==0.12.2
 requests==2.8.1
-Pillow==5.0.0
-PyYAML==3.12
+Pillow==11.1.0
+PyYAML==6.0.2
 cryptography==1.5.3
 jinja2==2.8
 urllib3==1.21.1

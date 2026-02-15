@@ -1,4 +1,5 @@
 from flask import Flask
+from markupsafe import escape
 import os
 import socket
 import getpass
@@ -24,13 +25,13 @@ def main():
 
     @app.route('/')
     def home():
-        version = app.config['VERSION']
-        environment = app.config['ENV']
-        hostname = socket.gethostname()
-        user = getpass.getuser()
+        version = escape(app.config['VERSION'])
+        environment = escape(app.config['ENV'])
+        hostname = escape(socket.gethostname())
+        user = escape(getpass.getuser())
 
         return (
-            f"<h2>Kubeflare Flask App 🚀</h2>"
+            f"<h2>Kubeflare Flask App</h2>"
             f"<ul>"
             f"<li><strong>Version:</strong> {version}</li>"
             f"<li><strong>Environment:</strong> {environment}</li>"
