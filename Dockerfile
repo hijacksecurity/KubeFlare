@@ -29,8 +29,7 @@ EXPOSE 5000
 # Set environment variable default (can override at runtime)
 ENV FLASK_ENV=PROD
 
-# Run the application with Gunicorn (production best practice)
-RUN pip install gunicorn
+# Gunicorn is now pinned in requirements.txt
 
 USER appuser
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "src.app:main()"]
